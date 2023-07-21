@@ -1,0 +1,17 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#map,
+body,
+html {
+  height: 100%;
+}
+
+
+legend {
+  background: rgba(255,255,255,0.8);
+  border-radius: 5px;
+  color: #777;
+}
