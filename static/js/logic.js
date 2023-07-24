@@ -1,5 +1,14 @@
 const api_url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 
+//get color function
+function getColor(d) {
+    return d > 90 ? '#d73027' :
+           d > 70  ? '#fc8d59' :
+           d > 50  ? '#fee08b' :
+           d > 30  ? '#d9ef8b' :
+           d > 10   ? '#91cf60' :
+                      '#1a9850';
+};
 
 function init() {
     d3.json(api_url).then(function(json_data) {
@@ -27,16 +36,6 @@ function init() {
             // Extract earthquake properties for the pop up
             const { mag, place } = properties;
             
-            //get color function
-            function getColor(d) {
-                return d > 90 ? '#d73027' :
-                       d > 70  ? '#fc8d59' :
-                       d > 50  ? '#fee08b' :
-                       d > 30  ? '#d9ef8b' :
-                       d > 10   ? '#91cf60' :
-                                  '#1a9850';
-            };
-
             // Customize the marker appearance based on the earthquake magnitude
             const marker = L.circleMarker([latitude, longitude], {
               radius: mag * 5,
@@ -50,20 +49,24 @@ function init() {
             //add popup when user clicks on an event on map
             marker.bindPopup(`Location: ${place}<br>Magnitude: ${mag}`);
 
+            });
+
+            //create the static legend
             legend.onAdd = function (map) {
 
-                const div = L.DomUtil.create('div', 'legend'),
-                    depths = [-10, 10, 30, 50, 70, 90]
+                var div = L.DomUtil.create('div', 'legend'),
+                    depths = [-10, 10, 30, 50, 70, 90],
+                    labels = [];
             
                 for (var i = 0; i < depths.length; i++) {
                     div.innerHTML +=
-                        '<div style="background:' + getColor(depths[i] + 1) + '"></div> ' +
+                        '<i style="background:' + getColor(depths[i] + 1) + '"></i> ' +
                         depths[i] + (depths[i + 1] ? '&ndash;' + depths[i + 1] + '<br>' : '+');
-                        };
+                        console.log(depths[i], getColor(depths[i] + 1));
+                        }
                 return div;
                 };
-            });
-        legend.addTo(map);
+                legend.addTo(map);
 });
 };
 
