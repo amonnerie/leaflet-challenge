@@ -3,6 +3,9 @@ By Andrea Monnerie
   (WITH AID: used Leaflet's online tutorial "Interactive Choropleth Map" as reference:
   https://leafletjs.com/examples/choropleth/)
 
+# To View the map: https://amonnerie.github.io/
+
+(There is only part-1 of the assignment)
 This a map that visualizes the json data from the United States Geological Survey of USGS. This map covers data of earthquakes globally:
 
  - This map (a screenshot of the map below) shows each earthquake event mapped by its coordinates along with additional information (coordinates, location/address, magnitude, depth) when the user clicks on the event marker. 
