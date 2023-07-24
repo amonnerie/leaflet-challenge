@@ -47,7 +47,12 @@ function init() {
             }).addTo(map);
             
             //add popup when user clicks on an event on map
-            marker.bindPopup(`Location: ${place}<br>Magnitude: ${mag}`);
+            marker.bindPopup(`longitude: ${longitude}
+                            <br>latitude: ${latitude}
+                            <br>Location: ${place}
+                            <br>Magnitude: ${mag}
+                            <br>Depth ${depth}
+                            <br>`);
 
             });
 
